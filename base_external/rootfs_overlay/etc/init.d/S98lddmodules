@@ -12,11 +12,12 @@ case "$1" in
         ;;
     stop)
         echo "Stopping hello module"
-        modprobe hello
+        rmmod hello
         echo "Stopping module"
-        module_load
+        module_unload faulty
         echo "Stopping SCULL"
-        scull_load
+        scull_unload
+        ;;
     *)
         echo "Usage: $0 {start|stop}"     
         exit 1
