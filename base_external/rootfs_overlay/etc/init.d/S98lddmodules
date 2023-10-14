@@ -4,8 +4,10 @@ case "$1" in
     start)
         echo "Starting SCULL"
         scull_load
-        echo "Starting module"
+        echo "Starting faulty module"
         module_load faulty
+        echo "Starting aesdchar module"
+        module_load aesdchar 
         echo "Starting hello module"
         modprobe hello
         echo "done."
@@ -13,7 +15,9 @@ case "$1" in
     stop)
         echo "Stopping hello module"
         rmmod hello
-        echo "Stopping module"
+        echo "Stopping aesdchar module"
+        module_unload aesdchar
+        echo "Stopping faulty module"
         module_unload faulty
         echo "Stopping SCULL"
         scull_unload
